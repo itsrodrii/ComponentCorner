@@ -6,10 +6,8 @@ import Footer from './components/Footer';
 import './App.css';
 
 function App() {
-  // Cart state
   const [cartItems, setCartItems] = useState([]);
 
-  // Example products
   const products = [
     {
       id: 1,
@@ -34,12 +32,10 @@ function App() {
     }
   ];
 
-  // Add to cart
   const addToCart = (product) => {
     setCartItems([...cartItems, product]);
   };
 
-  // Remove from cart
   const removeFromCart = (productId) => {
     setCartItems(cartItems.filter(item => item.id !== productId));
   };

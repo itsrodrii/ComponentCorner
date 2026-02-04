@@ -1,7 +1,7 @@
 .hero {
   min-height: 70vh;
   padding: 120px 20px;
-  background: #020617; /* deep slate / almost black */
+  background: #020617; 
   color: #f8fafc;
   display: flex;
   flex-direction: column;

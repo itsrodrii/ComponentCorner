@@ -50,7 +50,7 @@ body {
   color: #020617;
 }
 
-/* Adjust product grid spacing for cart section. Got help from AI for this part. */
+/* Adjust product grid spacing for cart section. Got help from AI. */
 .product-grid {
   display: flex;
   gap: 32px;

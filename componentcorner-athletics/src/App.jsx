@@ -1,48 +1,36 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import ProductCard from "./components/ProductCard";
-import Footer from "./components/Footer";
-import "./App.css";
+import Header from './components/Header';
+import Hero from './components/Hero';
+import ProductCard from './components/ProductCard';
+import Footer from './components/Footer';
+import './App.css';
 
 function App() {
   return (
-    <>
-      <Header storeName="ComponentCorner Athletics" />
+    <div className="app">
+      <Header storeName="ComponentCorner" />
 
-      <Hero
-        title="Train Hard. Wear Better."
-        subtitle="Premium gym apparel built for performance."
-        ctaText="Shop Apparel"
-      />
+      <Hero />
 
-      <main className="products">
+      <h2 className="section-title">Featured Products</h2>
+
+      <section className="product-grid">
         <ProductCard
-          name="Performance Training Tee"
-          price="34.99"
-          image="https://placehold.co/600x400?text=Gym+Apparel"
-          description="Lightweight, sweat-wicking tee for intense workouts."
+          name="Wireless Headphones"
+          description="High-quality wireless headphones with noise cancellation"
+          price="99.99"
+          image="https://via.placeholder.com/600x400"
         />
 
         <ProductCard
-          name="Seamless Gym Leggings"
-          price="59.99"
-          image="https://placehold.co/600x400?text=Gym+Apparel"
-          description="High-waisted leggings designed for comfort and mobility."
+          name="Bluetooth Speaker"
+          description="Portable speaker with premium sound quality"
+          price="79.99"
+          image="https://via.placeholder.com/600x400"
         />
+      </section>
 
-        <ProductCard
-          name="Athletic Shorts"
-          price="39.99"
-          image="https://placehold.co/600x400?text=Gym+Apparel"
-          description="Breathable shorts perfect for lifting and cardio."
-        />
-      </main>
-
-      <Footer
-        storeName="ComponentCorner Athletics"
-        email="support@componentcornerathletics.com"
-      />
-    </>
+      <Footer />
+    </div>
   );
 }
 

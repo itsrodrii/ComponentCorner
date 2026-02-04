@@ -1,10 +1,9 @@
-import "./Footer.css";
+import './Footer.css';
 
-function Footer({ storeName, email }) {
+function Footer() {
   return (
-    <footer className="footer">
-      <p>© {new Date().getFullYear()} {storeName}</p>
-      <p>Contact: {email}</p>
+    <footer className="app-footer">
+      <p>© 2026 ComponentCorner. All rights reserved.</p>
     </footer>
   );
 }

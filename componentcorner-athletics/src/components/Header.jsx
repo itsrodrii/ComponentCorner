@@ -2,12 +2,12 @@ import "./Header.css";
 
 function Header({ storeName }) {
   return (
-    <header className="header">
-      <h1>{storeName}</h1>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">Contact</a>
+    <header className="app-header">
+      <h1 className="logo">{storeName}</h1>
+      <nav className="nav-menu">
+        <a className="nav-link" href="#">Home</a>
+        <a className="nav-link" href="#">Shop</a>
+        <a className="nav-link" href="#">Contact</a>
       </nav>
     </header>
   );

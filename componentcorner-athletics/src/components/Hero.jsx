@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Hero.css';
 
 function Hero() {
@@ -5,7 +6,9 @@ function Hero() {
     <section className="hero">
       <h2>Welcome to ComponentCorner</h2>
       <p>Discover amazing products built with React components</p>
-      <button className="hero-btn">Shop Now</button>
+      <Link to="/products">
+        <button className="hero-btn">Shop Now</button>
+      </Link>
     </section>
   );
 }

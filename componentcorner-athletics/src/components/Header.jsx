@@ -1,18 +1,21 @@
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 function Header({ storeName, cartCount }) {
   return (
     <header className="app-header">
       <h1 className="logo">{storeName}</h1>
+
       <nav className="nav-menu">
-        <a className="nav-link" href="#">Home</a>
-        <a className="nav-link" href="#">Shop</a>
-        <a className="nav-link" href="#">Contact</a>
+        <Link className="nav-link" to="/">Home</Link>
+        <Link className="nav-link" to="/products">Products</Link>
+        <Link className="nav-link" to="/cart">Cart</Link>
       </nav>
+
       {cartCount > 0 && (
-        <div style={{ marginLeft: '20px' }}>
+        <Link to="/cart" style={{ marginLeft: '20px', textDecoration: 'none', color: 'inherit' }}>
           🛒 Items in Cart: <strong>{cartCount}</strong>
-        </div>
+        </Link>
       )}
     </header>
   );

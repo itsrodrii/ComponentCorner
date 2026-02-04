@@ -1,97 +1,86 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Header from './components/Header';
-import Hero from './components/Hero';
-import ProductCard from './components/ProductCard';
 import Footer from './components/Footer';
+
+import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import CartPage from './pages/CartPage';
+
 import './App.css';
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const products = [
-    {
-      id: 1,
-      name: "Wireless Headphones",
-      description: "High-quality wireless headphones with noise cancellation",
-      price: 99.99,
-      image: "https://via.placeholder.com/600x400",
-    },
-    {
-      id: 2,
-      name: "Bluetooth Speaker",
-      description: "Portable speaker with premium sound quality",
-      price: 79.99,
-      image: "https://via.placeholder.com/600x400",
-    },
-    {
-      id: 3,
-      name: "Smartwatch",
-      description: "Track your fitness and notifications on the go",
-      price: 149.99,
-      image: "https://via.placeholder.com/600x400",
-    }
+    { id: 1, name: "Wireless Headphones", description: "High-quality wireless headphones with noise cancellation", price: 99.99, image: "https://placehold.co/600x400?text=Wireless+Headphones" },
+    { id: 2, name: "Bluetooth Speaker", description: "Portable speaker with premium sound quality", price: 79.99, image: "https://placehold.co/600x400?text=Bluetooth+Speaker" },
+    { id: 3, name: "Smartwatch", description: "Track your fitness and notifications on the go", price: 149.99, image: "https://placehold.co/600x400?text=Smartwatch" },
+    { id: 4, name: "Laptop Stand", description: "Ergonomic stand to improve your posture and workflow", price: 39.99, image: "https://placehold.co/600x400?text=Laptop+Stand" },
   ];
 
   const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
+    if (!cartItems.find(item => item.id === product.id)) {
+      setCartItems([...cartItems, product]);
+    }
   };
 
-  const removeFromCart = (productId) => {
-    setCartItems(cartItems.filter(item => item.id !== productId));
+  const removeFromCart = (id) => {
+    setCartItems(cartItems.filter(item => item.id !== id));
   };
-
-  // Total price using reduce
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 
   return (
-    <div className="app">
-      <Header storeName="ComponentCorner" cartCount={cartItems.length} />
+    <BrowserRouter>
+      <div className="app">
+        <Header storeName="ComponentCorner" cartCount={cartItems.length} />
 
-      <Hero />
-
-      <h2 className="section-title">Featured Products</h2>
-
-      <section className="product-grid">
-        {products.map(product => (
-          <ProductCard
-            key={product.id}
-            name={product.name}
-            description={product.description}
-            price={product.price}
-            image={product.image}
-            inCart={cartItems.some(item => item.id === product.id)}
-            addToCart={() => addToCart(product)}
-            removeFromCart={() => removeFromCart(product.id)}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/products"
+            element={
+              <ProductsPage
+                products={products}
+                cartItems={cartItems}
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+              />
+            }
           />
-        ))}
-      </section>
+          <Route
+            path="/products/:id"
+            element={
+              <ProductDetailPage
+                products={products}
+                cartItems={cartItems}
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+              />
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <CartPage
+                cartItems={cartItems}
+                removeFromCart={removeFromCart}
+              />
+            }
+          />
+        </Routes>
 
-      <h2 className="section-title">Shopping Cart</h2>
-      {cartItems.length > 0 ? (
-        <section className="product-grid">
-          {cartItems.map(item => (
-            <ProductCard
-              key={item.id}
-              name={item.name}
-              description={item.description}
-              price={item.price}
-              image={item.image}
-              inCart={true}
-              removeFromCart={() => removeFromCart(item.id)}
-            />
-          ))}
-          <div style={{ textAlign: 'center', width: '100%', marginTop: '20px', fontWeight: '600' }}>
-            Total: ${totalPrice.toFixed(2)}
-          </div>
-        </section>
-      ) : (
-        <div className="empty-feed">
-          <p>Your cart is empty! Add some products to get started.</p>
-        </div>
-      )}
-
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

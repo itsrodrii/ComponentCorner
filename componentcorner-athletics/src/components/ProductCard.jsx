@@ -1,24 +1,25 @@
+import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
-function ProductCard({ name, description, price, image, inCart, addToCart, removeFromCart }) {
+function ProductCard({ id, name, description, price, image, inCart, addToCart, removeFromCart }) {
   return (
     <div className="product-card">
-      <img src={image} alt={name} className="product-image" />
-      <h3 className="product-name">{name}</h3>
+      <Link to={`/products/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <img src={image} alt={name} className="product-image" />
+        <h3 className="product-name">{name}</h3>
+      </Link>
       <p className="product-description">{description}</p>
       <p className="product-price">${price}</p>
 
-      {inCart ? (
-        <button className="hero-btn" onClick={removeFromCart}>
-          Remove from Cart
-        </button>
-      ) : (
-        <button className="hero-btn" onClick={addToCart}>
-          Add to Cart
-        </button>
-      )}
+      <button
+        className={`hero-btn ${inCart ? 'remove' : ''}`}
+        onClick={inCart ? removeFromCart : addToCart} // ✅ just call the functions
+      >
+        {inCart ? 'Remove from Cart' : 'Add to Cart'}
+      </button>
     </div>
   );
 }
 
 export default ProductCard;
+

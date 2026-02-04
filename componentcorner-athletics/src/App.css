@@ -32,3 +32,29 @@ body {
   flex-wrap: wrap;
   padding: 0 40px 80px;
 }
+
+/* Cart section styling */
+.empty-feed {
+  text-align: center;
+  color: #475569;
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+/* Total price display for cart */
+.cart-total {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #020617;
+}
+
+/* Adjust product grid spacing for cart section. Got help from AI for this part. */
+.product-grid {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 40px 80px;
+}

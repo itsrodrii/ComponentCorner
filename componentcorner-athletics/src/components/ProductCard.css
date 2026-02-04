@@ -41,3 +41,27 @@
   margin-top: auto;
   color: #020617;
 }
+
+.hero-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.hero-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Optional: different color for Remove from Cart. Used help of AI.*/
+.hero-btn.remove {
+  background-color: #dc3545;
+}
+
+.hero-btn.remove:hover {
+  background-color: #c82333;
+}

@@ -13,7 +13,7 @@ function ProductCard({ id, name, description, price, image, inCart, addToCart, r
 
       <button
         className={`hero-btn ${inCart ? 'remove' : ''}`}
-        onClick={inCart ? removeFromCart : addToCart} // ✅ just call the functions
+        onClick={inCart ? removeFromCart : addToCart} 
       >
         {inCart ? 'Remove from Cart' : 'Add to Cart'}
       </button>

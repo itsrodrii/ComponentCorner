@@ -6,7 +6,7 @@ function ProductsPage({ products, cartItems, addToCart, removeFromCart }) {
       {products.map(product => (
         <ProductCard
           key={product.id}
-          id={product.id} // ✅ Pass id for linking to detail page
+          id={product.id} 
           name={product.name}
           description={product.description}
           price={product.price}
